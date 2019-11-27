@@ -12,6 +12,9 @@ if not (os.path.exists('./yolcu_listesi.txt')):
     passenger_file.write("\n***")
     passenger_file.close()
 
+constructor = YolcuListe()
+constructor.yolcu_listesi_getir()
+
 
 def main_switcher(i):
     switcher = {
@@ -47,7 +50,15 @@ def update():
 
 
 def normal_user():
-    print("arama yap")
+    print("Simdi arama yapmaktasiniz:")
+
+    yolcu_input = str(input("\tyolcu adi gir: "))
+    hedef_input = str(input("\thedef konum gir: "))
+    ucus_input = str(input("\tucus no gir: "))
+    kimlik_input = str(input("\tID gir: "))
+    print(kimlik_input)
+
+    constructor.yolcu_ara(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
 user_input = int(input("Sistem Yoneticisi: 1\n"
@@ -68,9 +79,6 @@ if user_input == 1:
 else:
     go_client = main_switcher(user_input)
     go_client()
-
-constructor = YolcuListe()
-constructor.yolcu_listesi_getir()
 
 # with open("./yolcu_listesi.txt", "r") as user_file:
 #     # for line in user_file:

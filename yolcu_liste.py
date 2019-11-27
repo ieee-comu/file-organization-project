@@ -32,26 +32,18 @@ class YolcuListe:
             print((i[0]).hedef_konum, end='')
             print((i[0]).kimlik_id, end='')
 
-
-    def yolcu_ara(self, isim="", gidilecekYer="", ucusNo="", kimlikNo=""):
+    def yolcu_ara(self, isim, ucus_no, gidilecek_yer, kimlik_no):
+        e_list = self.erisim_listesi
         arama_listesi = []
-        if (isim != ""):
-            for i in range(len(self.erisim_listesi)):
-                if (self.erisim_listesi[i][0].yolcuAd == isim):
-                    arama_listesi.append(self.erisim_listesi[i][0])
-        elif (gidilecekYer != ""):
-            for i in range(len(self.erisim_listesi)):
-                if (self.erisim_listesi[i][0].ucusNo == isim):
-                    arama_listesi.append(self.erisim_listesi[i][0])
-        elif (ucusNo != ""):
-            for i in range(len(self.erisim_listesi)):
-                if (self.erisim_listesi[i][0].hedefKonum == isim):
-                    arama_listesi.append(self.erisim_listesi[i][0])
-        elif (kimlikNo != ""):
-            for i in range(len(self.erisim_listesi)):
-                if (self.erisim_listesi[i][0].kimlikId == isim):
-                    arama_listesi.append(self.erisim_listesi[i][0])
+        print(e_list)
 
+        for i in e_list:
+            if ((i[0].yolcu_ad == (isim + "\n")) or (i[0].hedef_konum == (ucus_no + "\n")) or (
+                    i[0].ucus_no == (gidilecek_yer + "\n")) or (i[0].kimlik_id == (kimlik_no + "\n"))):
+                arama_listesi.append(i[0])
+
+        for i in arama_listesi:
+            i.print_all()
 
     def yolcu_ekle(self):
         print("Yolcu Adını Giriniz.")
@@ -74,7 +66,6 @@ class YolcuListe:
         self.erisim_listesi.append(yeniliste)
 
         print("Yolcu Başarıyla Eklendi")
-
 
     def yolcu_guncelle(self):
         self.yolcu_ara()
