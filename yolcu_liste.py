@@ -1,5 +1,5 @@
 import os
-from Yolcu import Yolcu
+from yolcu import Yolcu
 
 class yolcuListe():
 
