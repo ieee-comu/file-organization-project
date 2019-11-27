@@ -3,11 +3,11 @@
 
 import os.path, yolcu, yolcu_liste
 
-# if (os.path.exists('./yolcuListesi.txt')):
+# if (os.path.exists('./yolcu_listesi.txt')):
 # #     print("dosya mevcut")
 
 # yukarıdaki kontrolü yapmaktansa 'w+', eğer dosya yoksa yenisini oluşturacaktır
-passenger_file = open("./yolcuListesi.txt", "w+")
+passenger_file = open("./yolcu_listesi.txt", "w+")
 
 '''
 Teslim Tarihi: 02.12.2019
