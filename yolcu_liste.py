@@ -2,20 +2,18 @@ import os
 from yolcu import Yolcu
 
 
-class YolcuListe():
+class YolcuListe:
     erisim_listesi = []
 
     def yolcu_listesi_getir(self):
-        dosya = open("./yolcu_listesi.txt", "a+")
-        yolcu_listesi = []
 
-        if (dosya.read() is True):
-            while (True):
-
-                isim = dosya.readline()
-                gidilecekYer = dosya.readline()
-                ucusNo = dosya.readline()
-                kimlikNo = dosya.readline()
+        with open("./yolcu_listesi.txt", "r") as dosya:
+            for line in dosya:
+                self.erisim_listesi
+                isim = line
+                gidilecekYer = line
+                ucusNo = line
+                kimlikNo = line
                 yeniyolcu = Yolcu(isim, gidilecekYer, ucusNo, kimlikNo)
 
                 liste = []
@@ -24,14 +22,13 @@ class YolcuListe():
 
                 self.erisim_listesi.append(liste)
 
-                konum = dosya.seek()
-                if (dosya.readline() == "***"):
+                if (line == "***"):
                     dosya.close()
                     break
                 else:
-                    dosya.tell(konum)
-        else:
-            dosya.close()
+                    # print(dosya.ne())
+                    print(liste)
+        print(((self.erisim_listesi)[0][0]).yolcu_ad)
 
     def yolcu_ara(self, isim="", gidilecekYer="", ucusNo="", kimlikNo=""):
         arama_listesi = []

@@ -1,12 +1,61 @@
 #!/usr/bin/python3
 # created by cicek on Nov 26, 2019 21:44
 
-import os.path, yolcu, yolcu_liste
+import os.path
+from yolcu import Yolcu
+from yolcu_liste import YolcuListe
 
+# When a file is opened in write mode, the file's existing content is deleted
+# yolcu_listesi.txt yoksa: olustur ve kapat
 if not (os.path.exists('./yolcu_listesi.txt')):
     passenger_file = open("./yolcu_listesi.txt", "w+")
     passenger_file.close()
 
+
+# passenger_file = open("./yolcu_listesi.txt", "r+")
+# passenger_file.write("hello1")
+
+# The file is automatically closed at the end of the with statement, even if exceptions occur within it
+# with open("./yolcu_listesi.txt", "r+") as passenger_file:
+#     for line in passenger_file:
+#         print(line)  # reads files by lines
+#
+#     passenger_file.write("last") # sona yazar
+
+
+def main_switcher(i):
+    switcher = {
+        1: sys_manager,
+        2: normal_user
+    }
+
+    return switcher.get(i, fun_invalid)
+
+def sys_manager():
+    print("ben sys manager")
+
+def normal_user():
+    print("arama yap")
+    # with open("./yolcu_listesi.txt", "r") as user_file:
+    #     # for line in user_file:
+    #     #     print(line, end="")  # reads files by lines
+    #
+    #
+    #     user_file.seek(0)
+
+
+def fun_invalid():
+    print("invalid input")
+
+user_input = int(input("Sistem Yoneticisi: 1\n"
+                       "Kullanici: 2\n"
+                       "giriniz..: "))
+
+fun = main_switcher(user_input)
+fun()
+
+constructor = YolcuListe()
+constructor.yolcu_listesi_getir()
 
 
 '''
@@ -59,90 +108,5 @@ gerçekleştirilecektir.
 Not 2: Ödev tesliminde kodun çıktısı alıncak, düzgün bir şekilde dosyalanacaktır.
 Programın kaynak kodları CD’ye kaydedilecektir. Kod bloklarının yanına görevleri
 detaylı bir şekilde açıklanacaktır (her satır için tek tek değil).
-
-'''
-
-'''
-# FILE MODES:
-
-# Example:
-# with open(name, 'w+') as f:
-#     f.write(data)
-
-# "r"
-# Read from file - YES
-# Write to file - NO
-# Create file if not exists - NO
-# Truncate file to zero length - NO
-# Cursor position - BEGINNING
-#
-# "r+"
-# Read from file - YES
-# Write to file - YES
-# Create file if not exists - NO
-# Truncate file to zero length - NO
-# Cursor position - BEGINNING
-#
-# "w"
-# Read from file - NO
-# Write to file - YES
-# Create file if not exists - YES
-# Truncate file to zero length - YES
-# Cursor position - BEGINNING
-#
-# "w+"
-# Read from file - YES
-# Write to file - YES
-# Create file if not exists - YES
-# Truncate file to zero length - YES
-# Cursor position - BEGINNING
-#
-# "a"
-# Read from file - NO
-# Write to file - YES
-# Create file if not exists - YES
-# Truncate file to zero length - NO
-# Cursor position - END
-#
-# "a+"
-# Read from file - YES
-# Write to file - YES
-# Create file if not exists - YES
-# Truncate file to zero length - NO
-# Cursor position - END
-
-myfile = open("/media/cicek/D/DDownloads/example.txt","w+")
-
-# Sending "r" means open in read mode, which is the default.
-# Sending "w" means write mode, for rewriting the contents of a file.
-# Sending "a" means append mode, for adding new content to the end of the file.
-#
-# Adding "b" to a mode opens it in binary mode,
-# which is used for non-text files (such as image and sound files).
-
-print("---------------------------------------------------------------------")
-
-# write mode
-open("/media/cicek/D/DDownloads/example.txt" , "w")
-
-# read mode
-open("/media/cicek/D/DDownloads/example.txt" , "r")
-
-# binary write mode
-open("/media/cicek/D/DDownloads/example.txt" , "wb")
-
-# binary read mode
-open("/media/cicek/D/DDownloads/example.txt" , "rb")
-
-print("---------------------------------------------------------------------")
-
-# Once a file has been opened and used, you should close it.
-# This is done with the close method of the file object.
-
-file = open("/media/cicek/D/DDownloads/example.txt" , "w")
-# do stuff to the file
-file.close()
-
-
 
 '''
