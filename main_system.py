@@ -13,17 +13,6 @@ if not (os.path.exists('./yolcu_listesi.txt')):
     passenger_file.close()
 
 
-# passenger_file = open("./yolcu_listesi.txt", "r+")
-# passenger_file.write("hello1")
-
-# The file is automatically closed at the end of the with statement, even if exceptions occur within it
-# with open("./yolcu_listesi.txt", "r+") as passenger_file:
-#     for line in passenger_file:
-#         print(line)  # reads files by lines
-#
-#     passenger_file.write("last") # sona yazar
-
-
 def main_switcher(i):
     switcher = {
         1: sys_manager,
@@ -59,12 +48,6 @@ def update():
 
 def normal_user():
     print("arama yap")
-    # with open("./yolcu_listesi.txt", "r") as user_file:
-    #     # for line in user_file:
-    #     #     print(line, end="")  # reads files by lines
-    #
-    #
-    #     user_file.seek(0)
 
 
 user_input = int(input("Sistem Yoneticisi: 1\n"
@@ -88,6 +71,23 @@ else:
 
 constructor = YolcuListe()
 constructor.yolcu_listesi_getir()
+
+# with open("./yolcu_listesi.txt", "r") as user_file:
+#     # for line in user_file:
+#     #     print(line, end="")  # reads files by lines
+#
+#
+#     user_file.seek(0)
+
+# passenger_file = open("./yolcu_listesi.txt", "r+")
+# passenger_file.write("hello1")
+
+# The file is automatically closed at the end of the with statement, even if exceptions occur within it
+# with open("./yolcu_listesi.txt", "r+") as passenger_file:
+#     for line in passenger_file:
+#         print(line)  # reads files by lines
+#
+#     passenger_file.write("last") # sona yazar
 
 '''
 Teslim Tarihi: 02.12.2019
