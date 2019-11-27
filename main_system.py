@@ -9,6 +9,7 @@ from yolcu_liste import YolcuListe
 # yolcu_listesi.txt yoksa: olustur ve kapat
 if not (os.path.exists('./yolcu_listesi.txt')):
     passenger_file = open("./yolcu_listesi.txt", "w+")
+    passenger_file.write("\n***")
     passenger_file.close()
 
 
@@ -28,11 +29,33 @@ def main_switcher(i):
         1: sys_manager,
         2: normal_user
     }
-
     return switcher.get(i, fun_invalid)
 
-def sys_manager():
-    print("ben sys manager")
+
+def sys_manager(i):
+    switcher = {
+        1: add,
+        2: delete,
+        3: update
+    }
+    return switcher.get(i, fun_invalid)
+
+
+def fun_invalid():
+    print("invalid input")
+
+
+def add():
+    print("add")
+
+
+def delete():
+    print("delete")
+
+
+def update():
+    print("update")
+
 
 def normal_user():
     print("arama yap")
@@ -44,19 +67,27 @@ def normal_user():
     #     user_file.seek(0)
 
 
-def fun_invalid():
-    print("invalid input")
-
 user_input = int(input("Sistem Yoneticisi: 1\n"
                        "Kullanici: 2\n"
                        "giriniz..: "))
 
-fun = main_switcher(user_input)
-fun()
+if user_input == 1:
+    go_sys = main_switcher(user_input)
+    sys_input = int(input("Sistem Yoneticisi olarak giris yapildi:\n"
+                          "\tLutfen bir islem seciniz:\n"
+                          "\t\tEKLE: 1\n"
+                          "\t\tSIL: 2\n"
+                          "\t\tGUNCELLE: 3\n"
+                          "\t\t..: "))
+
+    (go_sys(sys_input))()
+
+else:
+    go_client = main_switcher(user_input)
+    go_client()
 
 constructor = YolcuListe()
 constructor.yolcu_listesi_getir()
-
 
 '''
 Teslim Tarihi: 02.12.2019

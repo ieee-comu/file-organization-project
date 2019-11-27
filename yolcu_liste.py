@@ -8,12 +8,18 @@ class YolcuListe:
     def yolcu_listesi_getir(self):
 
         with open("./yolcu_listesi.txt", "r") as dosya:
-            for line in dosya:
+            lines = dosya.readlines()
+
+            for i in range(0, len(lines), 4):
                 self.erisim_listesi
-                isim = line
-                gidilecekYer = line
-                ucusNo = line
-                kimlikNo = line
+
+                # if (lines[i] == "***"):
+                #     break
+                # else:
+                isim = lines[i]
+                gidilecekYer = lines[i + 1]
+                ucusNo = lines[i + 2]
+                kimlikNo = lines[i + 3]
                 yeniyolcu = Yolcu(isim, gidilecekYer, ucusNo, kimlikNo)
 
                 liste = []
@@ -22,62 +28,58 @@ class YolcuListe:
 
                 self.erisim_listesi.append(liste)
 
-                if (line == "***"):
-                    dosya.close()
-                    break
-                else:
-                    # print(dosya.ne())
-                    print(liste)
-        print(((self.erisim_listesi)[0][0]).yolcu_ad)
+                print(liste)
 
-    def yolcu_ara(self, isim="", gidilecekYer="", ucusNo="", kimlikNo=""):
-        arama_listesi = []
-        if (isim != ""):
-            for i in range(len(self.erisim_listesi)):
-                if (self.erisim_listesi[i][0].yolcuAd == isim):
-                    arama_listesi.append(self.erisim_listesi[i][0])
-        elif (gidilecekYer != ""):
-            for i in range(len(self.erisim_listesi)):
-                if (self.erisim_listesi[i][0].ucusNo == isim):
-                    arama_listesi.append(self.erisim_listesi[i][0])
-        elif (ucusNo != ""):
-            for i in range(len(self.erisim_listesi)):
-                if (self.erisim_listesi[i][0].hedefKonum == isim):
-                    arama_listesi.append(self.erisim_listesi[i][0])
-        elif (kimlikNo != ""):
-            for i in range(len(self.erisim_listesi)):
-                if (self.erisim_listesi[i][0].kimlikId == isim):
-                    arama_listesi.append(self.erisim_listesi[i][0])
 
-    def yolcu_ekle(self):
-        print("Yolcu Adını Giriniz.")
-        isim = input()
+def yolcu_ara(self, isim="", gidilecekYer="", ucusNo="", kimlikNo=""):
+    arama_listesi = []
+    if (isim != ""):
+        for i in range(len(self.erisim_listesi)):
+            if (self.erisim_listesi[i][0].yolcuAd == isim):
+                arama_listesi.append(self.erisim_listesi[i][0])
+    elif (gidilecekYer != ""):
+        for i in range(len(self.erisim_listesi)):
+            if (self.erisim_listesi[i][0].ucusNo == isim):
+                arama_listesi.append(self.erisim_listesi[i][0])
+    elif (ucusNo != ""):
+        for i in range(len(self.erisim_listesi)):
+            if (self.erisim_listesi[i][0].hedefKonum == isim):
+                arama_listesi.append(self.erisim_listesi[i][0])
+    elif (kimlikNo != ""):
+        for i in range(len(self.erisim_listesi)):
+            if (self.erisim_listesi[i][0].kimlikId == isim):
+                arama_listesi.append(self.erisim_listesi[i][0])
 
-        print("Gidilecek Yeri Giriniz.")
-        gidilecekYer = input()
 
-        print("Uçuş No Giriniz.")
-        ucusNo = input()
+def yolcu_ekle(self):
+    print("Yolcu Adını Giriniz.")
+    isim = input()
 
-        print("KimlikId Giriniz.")
-        kimlikId = input()
+    print("Gidilecek Yeri Giriniz.")
+    gidilecekYer = input()
 
-        yeniyolcu = Yolcu(isim, gidilecekYer, ucusNo, kimlikId)
+    print("Uçuş No Giriniz.")
+    ucusNo = input()
 
-        yeniliste = []
-        yeniliste.append(yeniyolcu)
-        yeniliste.append(1)
-        self.erisim_listesi.append(yeniliste)
+    print("KimlikId Giriniz.")
+    kimlikId = input()
 
-        print("Yolcu Başarıyla Eklendi")
+    yeniyolcu = Yolcu(isim, gidilecekYer, ucusNo, kimlikId)
 
-    def yolcu_guncelle(self):
+    yeniliste = []
+    yeniliste.append(yeniyolcu)
+    yeniliste.append(1)
+    self.erisim_listesi.append(yeniliste)
 
-        self.yolcu_ara()
+    print("Yolcu Başarıyla Eklendi")
 
-        # yolculistesini dosyadan oku
-        # ara
-        # ekle
-        # güncelle
-        # sil
-        # yolculistesini dosyaya yaz
+
+def yolcu_guncelle(self):
+    self.yolcu_ara()
+
+    # yolculistesini dosyadan oku
+    # ara
+    # ekle
+    # güncelle
+    # sil
+    # yolculistesini dosyaya yaz
