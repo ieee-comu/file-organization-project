@@ -6,6 +6,8 @@ class YolcuListe:
     erisim_listesi = []  # global variable definition
 
     def yolcu_listesi_getir(self):
+
+        # yolcu_listesi.txt uzerinden erisim_listesi 'ne ekle
         with open("./yolcu_listesi.txt", "r") as dosya:
             lines = dosya.readlines()
 
@@ -24,16 +26,14 @@ class YolcuListe:
 
                 self.erisim_listesi.append(liste)
 
+        # erisim_listesi 'ni yazdir
         e_list = self.erisim_listesi
-
         for i in e_list:
-            print((i[0]).yolcu_ad, end='')
-            print((i[0]).ucus_no, end='')
-            print((i[0]).hedef_konum, end='')
-            print((i[0]).kimlik_id, end='')
+            i[0].print_all()
 
     def yolcu_ara(self, *args):
 
+        # aramak istenilen girdilerin ayni obje'de olup olmadiklarini kontrol etme
         def intersection(*args):
             if (len(args) == 2):
                 for i in range(1):
@@ -46,16 +46,19 @@ class YolcuListe:
                     return list(set(args[i]) & set(args[i + 1]) & set(args[i + 2]) & set(args[i + 3]))
 
         e_list = self.erisim_listesi
-        arama_listesi = []
-        # print(e_list)
-        # print(args)
 
+        # aranip bulunan nesneleri tutacak liste
+        arama_listesi = []
+
+        # girdi bos ise bunlari ayikla ve geri kalani list_arg 'a at
         result = filter(lambda x: x != "", args)
         list_arg = list(result)
 
+        # tum girdiler bos ise
         if (len(list_arg) == 0):
             print("Lutfen deger giriniz")
 
+        # sadece 1 girdi girildi ise sonuclari goster
         elif (len(list_arg) == 1):
             for a in list_arg:
                 for e in e_list:
@@ -63,6 +66,11 @@ class YolcuListe:
                             ((a + "\n") == (e[0].ucus_no)) or (((a + "\n")) == (e[0].kimlik_id))):
                         arama_listesi.append(e[0])
 
+            # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
+            if len(arama_listesi) == 0:
+                print("icerik bulunamadı\n")
+
+        # sadece 2 girdi girildi ise sonuclari goster
         elif (len(list_arg) == 2):
             list1 = []
             list2 = []
@@ -81,6 +89,11 @@ class YolcuListe:
             for each in last:
                 each.print_all()
 
+            # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
+            if len(arama_listesi) == 0:
+                print("icerik bulunamadı\n")
+
+        # sadece 3 girdi girildi ise sonuclari goster
         elif (len(list_arg) == 3):
             list1 = []
             list2 = []
@@ -106,7 +119,13 @@ class YolcuListe:
             for each in last:
                 each.print_all()
 
-        else:
+            # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
+            if len(arama_listesi) == 0:
+                print("icerik bulunamadı\n")
+
+        # sadece 4 girdi girildi ise sonuclari goster
+        # girdi zaten 4 'ten fazla olamaz
+        elif (len(list_arg) == 4):
             list1 = []
             list2 = []
             list3 = []
@@ -137,16 +156,9 @@ class YolcuListe:
             for each in last:
                 each.print_all()
 
-        #
-        # set_temp = set(temp)
-        #
-        # if len(set_temp) == 1:
-        #     arama_listesi.append(temp[0])
-        # else:
-        #     print("icerik bulunamadı\n")
-
-        # for e in arama_listesi:
-        #     e.print_all()
+            # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
+            if len(arama_listesi) == 0:
+                print("icerik bulunamadı\n")
 
     def yolcu_ekle(self):
         print("Yolcu Adını Giriniz.")

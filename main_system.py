@@ -11,10 +11,14 @@ if not (os.path.exists('./yolcu_listesi.txt')):
     passenger_file = open("./yolcu_listesi.txt", "w+")
     passenger_file.close()
 
+# constructor olustur
 constructor = YolcuListe()
+
+# dosyadaki verileri erisim listesine getir
 constructor.yolcu_listesi_getir()
 
 
+# kullanici veya sistem yoneticisi belirle
 def main_switcher(i):
     switcher = {
         1: sys_manager,
@@ -23,6 +27,7 @@ def main_switcher(i):
     return switcher.get(i, fun_invalid)
 
 
+# sistem yoneticisi ise ekle, cikar, guncelle belirle
 def sys_manager(i):
     switcher = {
         1: add,
@@ -32,22 +37,27 @@ def sys_manager(i):
     return switcher.get(i, fun_invalid)
 
 
+# bos veya hatali veri girilirse
 def fun_invalid():
     print("invalid input")
 
 
+# sistem yoneticisi icin erisim listesine ekle
 def add():
     print("add")
 
 
+# sistem yoneticisi icin erisim listesinden cikar
 def delete():
     print("delete")
 
 
+# sistem yoneticisi icin erisim listesini guncelle
 def update():
     print("update")
 
 
+# kullanıci secilmis ise arama yapmak icin girdileri al
 def normal_user():
     print("Simdi arama yapmaktasiniz:")
 
@@ -55,15 +65,17 @@ def normal_user():
     hedef_input = str(input("\thedef konum gir: "))
     ucus_input = str(input("\tucus no gir: "))
     kimlik_input = str(input("\tID gir: "))
-    print(kimlik_input)
 
+    # arama yapmasi icin yolcu_ara() fonksiyonuna gonder
     constructor.yolcu_ara(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
+# program calisirken ilk alinacak girdiler
 user_input = int(input("Sistem Yoneticisi: 1\n"
                        "Kullanici: 2\n"
                        "giriniz..: "))
 
+# kullanici girdisi 1 ise
 if user_input == 1:
     go_sys = main_switcher(user_input)
     sys_input = int(input("Sistem Yoneticisi olarak giris yapildi:\n"
@@ -75,6 +87,7 @@ if user_input == 1:
 
     (go_sys(sys_input))()
 
+# kullanici girdisi 2 ise
 else:
     go_client = main_switcher(user_input)
     go_client()
