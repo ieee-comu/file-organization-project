@@ -3,7 +3,7 @@ class Yolcu():
     def __init__(self, ad, no, konum, kimlik):
         self.yolcu_ad = ad
         self.hedef_konum = konum
-        self.ucus_no = no
+        self.ucus_no = no  # benzersiz - unique
         self.kimlik_id = kimlik
 
     def print_all(self):

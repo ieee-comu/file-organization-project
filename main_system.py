@@ -9,7 +9,6 @@ from yolcu_liste import YolcuListe
 # yolcu_listesi.txt yoksa: olustur ve kapat
 if not (os.path.exists('./yolcu_listesi.txt')):
     passenger_file = open("./yolcu_listesi.txt", "w+")
-    passenger_file.write("\n***")
     passenger_file.close()
 
 constructor = YolcuListe()
