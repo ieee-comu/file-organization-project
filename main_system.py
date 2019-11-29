@@ -71,14 +71,14 @@ def normal_user():
 
 
 # program calisirken ilk alinacak girdiler
-user_input = int(input("Sistem Yoneticisi: 1\n"
-                       "Kullanici: 2\n"
+user_input = int(input("\nSistem Yoneticisi icin: 1\n"
+                       "Kullanici icin: 2\n"
                        "giriniz..: "))
 
 # kullanici girdisi 1 ise
 if user_input == 1:
     go_sys = main_switcher(user_input)
-    sys_input = int(input("Sistem Yoneticisi olarak giris yapildi:\n"
+    sys_input = int(input("\nSistem Yoneticisi olarak giris yapildi:\n"
                           "\tLutfen bir islem seciniz:\n"
                           "\t\tEKLE: 1\n"
                           "\t\tSIL: 2\n"

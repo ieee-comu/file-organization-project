@@ -66,6 +66,10 @@ class YolcuListe:
                             ((a + "\n") == (e[0].ucus_no)) or (((a + "\n")) == (e[0].kimlik_id))):
                         arama_listesi.append(e[0])
 
+            # arama_listesi 'ndekileri yazdır
+            for each in arama_listesi:
+                each.print_all()
+
             # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
             if len(arama_listesi) == 0:
                 print("icerik bulunamadı\n")
@@ -84,9 +88,9 @@ class YolcuListe:
                         ((b + "\n") == (e[0].ucus_no)) or (((b + "\n")) == (e[0].kimlik_id))):
                     list2.append(e[0])
 
-            last = intersection(list1, list2)
-
-            for each in last:
+            # arama_listesi 'ndekileri yazdır
+            arama_listesi = intersection(list1, list2)
+            for each in arama_listesi:
                 each.print_all()
 
             # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
@@ -115,8 +119,9 @@ class YolcuListe:
                         ((c + "\n") == (e[0].ucus_no)) or (((c + "\n")) == (e[0].kimlik_id))):
                     list3.append(e[0])
 
-            last = intersection(list1, list2, list3)
-            for each in last:
+            # arama_listesi 'ndekileri yazdır
+            arama_listesi = intersection(list1, list2, list3)
+            for each in arama_listesi:
                 each.print_all()
 
             # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
@@ -152,8 +157,9 @@ class YolcuListe:
                         ((d + "\n") == (e[0].ucus_no)) or (((d + "\n")) == (e[0].kimlik_id))):
                     list4.append(e[0])
 
-            last = intersection(list1, list2, list3, list4)
-            for each in last:
+            # arama_listesi 'ndekileri yazdır
+            arama_listesi = intersection(list1, list2, list3, list4)
+            for each in arama_listesi:
                 each.print_all()
 
             # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
