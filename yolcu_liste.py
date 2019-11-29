@@ -1,4 +1,4 @@
-import os
+import os, sys
 from yolcu import Yolcu
 
 
@@ -51,8 +51,7 @@ class YolcuListe:
         arama_listesi = []
 
         # girdi bos ise bunlari ayikla ve geri kalani list_arg 'a at
-        result = filter(lambda x: x != "", args)
-        list_arg = list(result)
+        list_arg = list(filter(lambda x: x != "", args))
 
         # tum girdiler bos ise
         if (len(list_arg) == 0):
@@ -166,27 +165,39 @@ class YolcuListe:
             if len(arama_listesi) == 0:
                 print("icerik bulunamadı\n")
 
-    def yolcu_ekle(self):
-        print("Yolcu Adını Giriniz.")
-        isim = input()
+    def yolcu_ekle(self, *args):
 
-        print("Gidilecek Yeri Giriniz.")
-        gidilecekYer = input()
+        # girdilerin herhangi biri bos mu kontrol et
+        result = list(filter(lambda x: x != "", args))
+        print(result)
+        # girdilerin en az biri bos ise uyari ver ve cik
+        if not len(result) == 4:
+            print("---!!!Lutfen BOS GIRMEYINIZ!!!---")
+            sys.exit()
 
-        print("Uçuş No Giriniz.")
-        ucusNo = input()
+        else:
+            for e in self.erisim_listesi:
+                # print(result[0] + "\n")
+                # print((e[0].yolcu_ad))
+                print( ((e[0].hedef_konum)))
 
-        print("KimlikId Giriniz.")
-        kimlikId = input()
 
-        yeniyolcu = Yolcu(isim, gidilecekYer, ucusNo, kimlikId)
+                # if (((result[0] + "\n") == (e[0].yolcu_ad)) and ((result[1] + "\n") == (e[0].hedef_konum)) and
+                #         ((result[2] + "\n") == (e[0].ucus_no)) and (((result[3] + "\n")) == (e[0].kimlik_id))):
+                #     print("\n\tAyni kayitlar MEVCUT: CIKILIYOR...")
 
-        yeniliste = []
-        yeniliste.append(yeniyolcu)
-        yeniliste.append(1)
-        self.erisim_listesi.append(yeniliste)
-
-        print("Yolcu Başarıyla Eklendi")
+        eklenen_yolcu = Yolcu(args[0], args[1], args[2], args[3])
+        # print(((result[0]) == (e[0].yolcu_ad)))
+        # print(result[0] + "\n")
+        # print((e[0].yolcu_ad))
+        # # eklenen yolcuyu temporary listeye attik ve 1 ile isaretledik
+        # temp = []
+        # temp.append(eklenen_yolcu)
+        # temp.append(1)
+        #
+        # # erisim_listesi 'nin sonuna ekle
+        # self.erisim_listesi.append(temp)
+        print("Yolcu Basariyla EKLENDI")
 
     def yolcu_guncelle(self):
         self.yolcu_ara()

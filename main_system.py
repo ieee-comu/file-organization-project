@@ -44,7 +44,13 @@ def fun_invalid():
 
 # sistem yoneticisi icin erisim listesine ekle
 def add():
-    print("add")
+    # yolcu eklemek icin girdi
+    yolcu_input = str(input("\n\tEKLE: yolcu adi gir: "))
+    hedef_input = str(input("\tEKLE: hedef konum gir: "))
+    ucus_input = str(input("\tEKLE: ucus no gir: "))
+    kimlik_input = str(input("\tEKLE: ID gir: "))
+
+    constructor.yolcu_ekle(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
 # sistem yoneticisi icin erisim listesinden cikar
@@ -135,23 +141,23 @@ typedef struct T_Yolcu {
 
 ---------- b) Ekleme, silme ve güncelleme işlemleri gerçekleştirilecek. Bu işlemler sırasında aşağıdaki şekilde gerçekleştirilecektir : -----------
 
-- Bir kayıt eklerken öncelikle “Erişim Listesine” bakılacak, gerekli
-  düzenlemeler “Erişim Listesi” üzerinde gerçekleştirilecek ve daha sonra kayıt
-  eklenecektir.
+   ------ Bir kayıt eklerken öncelikle “Erişim Listesine” bakılacak, gerekli
+   |       düzenlemeler “Erişim Listesi” üzerinde gerçekleştirilecek ve daha sonra kayıt
+EKLE      eklenecektir.
+   |     
+   ------ Eğer eklenecek kayıt daha önceden mevcutsa, bu kayıt dosyaya
+          yazılmayacaktır.
 
-- Eğer eklenecek kayıt daha önceden mevcutsa, bu kayıt dosyaya
-  yazılmayacaktır.
+   ------ Kayıt silme işleminde kayıt, hemen fiziksel olarak dosyadan
+   |      silnmeyecektir. Dosya üzerine bir belirteç konulacak ve ardından gerekli
+  SIL     düzenlemeler “Erişim Listesi” üzerinde yapıldıktan sonra silme işlemi
+   |      gerçekleştirilecektir.
+   |
+   ------ Silinecek kayıt mevcut değilse, ekranda uyarı mesejı görüntülecektir.
 
-- Kayıt silme işleminde kayıt, hemen fiziksel olarak dosyadan
-  silnmeyecektir. Dosya üzerine bir belirteç konulacak ve ardından gerekli
-  düzenlemeler “Erişim Listesi” üzerinde yapıldıktan sonra silme işlemi
-  gerçekleştirilecektir.
-
-- Silinecek kayıt mevcut değilse, ekranda uyarı mesejı görüntülecektir.
-
-- Programdan çıktıktan sonra dosya düzenli bir şekilde, compact bir yapıya
-  sahip olacaktır. (Örn: hiç bir kayıt üzerinde silme işlemeninden kalan belirteç
-  bulunmayacaktır.)
+    ----- Programdan çıktıktan sonra dosya düzenli bir şekilde, compact bir yapıya
+  CIKIS   sahip olacaktır. (Örn: hiç bir kayıt üzerinde silme işlemeninden kalan belirteç
+    ----  bulunmayacaktır.)
 
 Not 1: Ödev C veya Python programlama dillerinden biri kullanılarak
 gerçekleştirilecektir.
