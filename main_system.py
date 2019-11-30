@@ -8,7 +8,7 @@ from yolcu_liste import YolcuListe
 # When a file is opened in write mode, the file's existing content is deleted
 # yolcu_listesi.txt yoksa: olustur ve kapat
 if not (os.path.exists('./yolcu_listesi.txt')):
-    passenger_file = open("./yolcu_listesi.txt", "w+")
+    passenger_file = open("./yolcu_listesi.txt", "x")
     passenger_file.close()
 
 # constructor olustur
@@ -76,44 +76,30 @@ def normal_user():
     constructor.yolcu_ara(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
+def choice(user_input):
+    # kullanici girdisi 1 ise
+    if user_input == 1:
+        go_sys = main_switcher(user_input)
+        sys_input = int(input("\nSistem Yoneticisi olarak giris yapildi:\n"
+                              "\tLutfen bir islem seciniz:\n"
+                              "\t\tEKLE: 1\n"
+                              "\t\tSIL: 2\n"
+                              "\t\tGUNCELLE: 3\n"
+                              "\t\t..: "))
+
+        (go_sys(sys_input))()
+
+    # kullanici girdisi 2 ise
+    else:
+        go_client = main_switcher(user_input)
+        go_client()
+
+
 # program calisirken ilk alinacak girdiler
 user_input = int(input("\nSistem Yoneticisi icin: 1\n"
                        "Kullanici icin: 2\n"
                        "giriniz..: "))
-
-# kullanici girdisi 1 ise
-if user_input == 1:
-    go_sys = main_switcher(user_input)
-    sys_input = int(input("\nSistem Yoneticisi olarak giris yapildi:\n"
-                          "\tLutfen bir islem seciniz:\n"
-                          "\t\tEKLE: 1\n"
-                          "\t\tSIL: 2\n"
-                          "\t\tGUNCELLE: 3\n"
-                          "\t\t..: "))
-
-    (go_sys(sys_input))()
-
-# kullanici girdisi 2 ise
-else:
-    go_client = main_switcher(user_input)
-    go_client()
-
-# with open("./yolcu_listesi.txt", "r") as user_file:
-#     # for line in user_file:
-#     #     print(line, end="")  # reads files by lines
-#
-#
-#     user_file.seek(0)
-
-# passenger_file = open("./yolcu_listesi.txt", "r+")
-# passenger_file.write("hello1")
-
-# The file is automatically closed at the end of the with statement, even if exceptions occur within it
-# with open("./yolcu_listesi.txt", "r+") as passenger_file:
-#     for line in passenger_file:
-#         print(line)  # reads files by lines
-#
-#     passenger_file.write("last") # sona yazar
+choice(user_input)
 
 '''
 Teslim Tarihi: 02.12.2019
