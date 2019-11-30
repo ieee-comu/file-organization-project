@@ -183,6 +183,7 @@ class YolcuListe:
                 if (((result[0] + "\n") == (e[0].yolcu_ad)) and ((result[1] + "\n") == (e[0].hedef_konum)) and
                         ((result[2] + "\n") == (e[0].ucus_no)) and (((result[3] + "\n")) == (e[0].kimlik_id))):
                     print("\n\tAyni kayitlar MEVCUT: CIKILIYOR...")
+                    sys.exit()
 
         eklenen_yolcu = Yolcu(args[0], args[1], args[2], args[3])
 
