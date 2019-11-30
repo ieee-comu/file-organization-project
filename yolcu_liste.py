@@ -175,7 +175,7 @@ class YolcuListe:
 
         # girdilerin en az biri bos ise uyari ver ve cik
         if not len(result) == 4:
-            print("---!!!Lutfen BOS GIRMEYINIZ!!!---")
+            print("\n\t! Lutfen BOS GIRMEYINIZ: CIKILIYOR...")
             sys.exit()
 
         # kayitlar erisim_listesi 'nde varsa uyarı ver
@@ -205,14 +205,68 @@ class YolcuListe:
             dosya.write(e_list[-1][0].ucus_no + "\n")
             dosya.write(e_list[-1][0].kimlik_id + "\n")
 
-        print("Yolcu Basariyla EKLENDI")
+        print("\n\tYolcu Basariyla EKLENDI")
 
-    def yolcu_guncelle(self):
-        self.yolcu_ara()
+    def yolcu_sil(self, *args):
 
-        # yolculistesini dosyadan oku
-        # ara
-        # ekle
-        # güncelle
-        # sil
-        # yolculistesini dosyaya yaz
+        # girdilerin herhangi biri bos mu kontrol et
+        result = list(filter(lambda x: x != "", args))
+
+        # girdilerin en az biri bos ise uyari ver ve cik
+        if not len(result) == 4:
+            print("\n\t! Lutfen BOS GIRMEYINIZ: CIKILIYOR...")
+            sys.exit()
+
+        # silinecek kayit erisim_listesi 'nde varsa sil
+        else:
+            # kayitlar erisim_listesi 'nde varsa: control = 0 yapilacak
+            control = -1
+
+            for e in self.erisim_listesi:
+
+                # silinecek kayit erisim_listesi 'nde varsa
+                # o anki nesneye -1 silinecek isaretini koy (pointer)
+                # normal oble    : [object(), 1]
+                # silinecek obje : [object(), -1]
+                if (((result[0] + "\n") == (e[0].yolcu_ad)) and ((result[1] + "\n") == (e[0].hedef_konum)) and
+                        ((result[2] + "\n") == (e[0].ucus_no)) and (((result[3] + "\n")) == (e[0].kimlik_id))):
+                    print("\n\tKayit BULUNDU: SILINIYOR...")
+                    control = 0
+                    e[1] = -1
+
+            if control == -1:
+                print("\n\tKayit mevcut DEGIL: SILINEMEDI: CIKILIYOR...")
+                sys.exit()
+
+        print("\n\terisim_listesi uzunluk: " + str(len(self.erisim_listesi)))
+
+        # erisim_listesi 'ne bakarak dosyadaki silinecek verileri sil
+        with open("./yolcu_listesi.txt", "w") as dosya:
+            for e in self.erisim_listesi:
+                if not (e[1] == -1):
+                    dosya.write(e[0].yolcu_ad)
+                    dosya.write(e[0].hedef_konum)
+                    dosya.write(e[0].ucus_no)
+                    dosya.write(e[0].kimlik_id)
+
+        # dosyanin son halini yazdir
+        with open("./yolcu_listesi.txt", "r") as dosya:
+            for i in dosya:
+                print(i, end="")
+
+        # programdan cikmadan once erisim_listesi 'ni duzenle
+        # silinen dosyalarin pointerlarini sil
+        e_list = self.erisim_listesi
+        remove_index = 0
+
+        for i in range(len(e_list)):
+            if (e_list[i][1] == -1):
+                remove_index = i
+
+        # silinen verileri erisim_listesi 'nden kaldir
+        self.erisim_listesi.pop(remove_index)
+
+        print("\n\tYolcu Basariyla SILINDI")
+        print("\n\terisim_listesi uzunluk: " + str(len(self.erisim_listesi)))
+
+    # def yolcu_guncelle(self):

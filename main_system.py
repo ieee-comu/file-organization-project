@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # created by cicek on Nov 26, 2019 21:44
 
-import os.path
+import os.path, sys
 from yolcu import Yolcu
 from yolcu_liste import YolcuListe
 
@@ -51,7 +51,7 @@ def fun_invalid():
     print("\n\tINVALID INPUT")
 
 
-# sistem yoneticisi icin erisim listesine ekle
+# sistem yoneticisi icin: erisim listesine ekle
 def add():
     # yolcu eklemek icin girdi
     yolcu_input = str(input("\n\tEKLE: yolcu adi gir: "))
@@ -59,20 +59,31 @@ def add():
     ucus_input = str(input("\tEKLE: ucus no gir: "))
     kimlik_input = str(input("\tEKLE: ID gir: "))
 
+    # erisim listesine yapmasi icin yolcu_ekle() fonksiyonuna gonder
     constructor.yolcu_ekle(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
-# sistem yoneticisi icin erisim listesinden cikar
+# sistem yoneticisi icin: erisim listesinden cikar
 def delete():
-    print("delete")
+    print("\n\t!.: Silmek istediginiz yolcunun TUM ozelliklerini girmelisiniz"
+          " .:!")
+
+    # yolcu silmek icin girdi
+    yolcu_input = str(input("\n\tSIL: yolcu adi gir: "))
+    hedef_input = str(input("\tSIL: hedef konum gir: "))
+    ucus_input = str(input("\tSIL: ucus no gir: "))
+    kimlik_input = str(input("\tSIL: ID gir: "))
+
+    # silme yapmasi icin yolcu_sil() fonksiyonuna gonder
+    constructor.yolcu_sil(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
-# sistem yoneticisi icin erisim listesini guncelle
+# sistem yoneticisi icin: erisim listesini guncelle
 def update():
     print("update")
 
 
-# kullanıci secilmis ise arama yapmak icin girdileri al
+# kullanıci secilmis ise: arama yapmak icin girdileri al
 def normal_user():
     print("Simdi arama yapmaktasiniz:")
 
@@ -85,16 +96,27 @@ def normal_user():
     constructor.yolcu_ara(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
+user_input = 0  # global variable definition
+
+
+# sys_input = 0  # global variable definition
+
+
 def choice(user_input):
     # kullanici girdisi 1 ise
     if user_input == 1:
         go_sys = main_switcher(user_input)
-        sys_input = int(input("\nSistem Yoneticisi olarak giris yapildi:\n"
-                              "\tLutfen bir islem seciniz:\n"
-                              "\t\tEKLE: 1\n"
-                              "\t\tSIL: 2\n"
-                              "\t\tGUNCELLE: 3\n"
-                              "\t\t..: "))
+
+        try:
+            sys_input = int(input("\nSistem Yoneticisi olarak giris yapildi:\n"
+                                  "\tLutfen bir islem seciniz:\n"
+                                  "\t\tEKLE: 1\n"
+                                  "\t\tSIL: 2\n"
+                                  "\t\tGUNCELLE: 3\n"
+                                  "\t\t..: "))
+        except ValueError:
+            print("\n\tINVALID INPUT")
+            sys.exit()
 
         (go_sys(sys_input))()
 
@@ -105,9 +127,14 @@ def choice(user_input):
 
 
 # program calisirken ilk alinacak girdiler
-user_input = int(input("\nSistem Yoneticisi icin: 1\n"
-                       "Kullanici icin: 2\n"
-                       "giriniz..: "))
+try:
+    user_input = int(input("\nSistem Yoneticisi icin: 1\n"
+                           "Kullanici icin: 2\n"
+                           "giriniz..: "))
+except ValueError:
+    print("\n\tINVALID INPUT")
+    sys.exit()
+
 choice(user_input)
 
 '''
