@@ -99,9 +99,6 @@ def normal_user():
 user_input = 0  # global variable definition
 
 
-# sys_input = 0  # global variable definition
-
-
 def choice(user_input):
     # kullanici girdisi 1 ise
     if user_input == 1:
