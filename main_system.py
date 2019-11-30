@@ -19,12 +19,11 @@ the file's existing content is deleted
 # yolcu_listesi.txt yoksa: olustur ve kapat
 if not (os.path.exists('./yolcu_listesi.txt')):
     passenger_file = open("./yolcu_listesi.txt", "x")
+    print("\n\t./yolcu_listesi.txt dosyasi mevcut dizinde olusturuldu...")
     passenger_file.close()
 
-# constructor olustur
+# constructor olustur ve dosyadaki verileri erisim listesine getir
 constructor = YolcuListe()
-
-# dosyadaki verileri erisim listesine getir
 constructor.yolcu_listesi_getir()
 
 
@@ -49,7 +48,7 @@ def sys_manager(i):
 
 # bos veya hatali veri girilirse
 def fun_invalid():
-    print("invalid input")
+    print("\n\tINVALID INPUT")
 
 
 # sistem yoneticisi icin erisim listesine ekle

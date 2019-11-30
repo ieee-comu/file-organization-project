@@ -27,8 +27,13 @@ class YolcuListe:
 
                 self.erisim_listesi.append(liste)
 
-        # erisim_listesi 'ni yazdir
+        # erisim_listesi bos ise dosyada bir sey yok demektir
+        # erisim_listesi dolu ise bu mesaji yazdir
         e_list = self.erisim_listesi
+        if not (len(e_list) == 0):
+            print("\n\t..: Dosya icerigini goruntulemektesiniz :..")
+
+        # erisim_listesi 'ni yazdir
         for i in e_list:
             i[0].print_all()
 
@@ -37,14 +42,11 @@ class YolcuListe:
         # aramak istenilen girdilerin ayni obje'de olup olmadiklarini kontrol etme
         def intersection(*args):
             if (len(args) == 2):
-                for i in range(1):
-                    return list(set(args[i]) & set(args[i + 1]))
+                return list(set(args[i]) & set(args[i + 1]))
             elif (len(args) == 3):
-                for i in range(1):
-                    return list(set(args[i]) & set(args[i + 1]) & set(args[i + 2]))
+                return list(set(args[i]) & set(args[i + 1]) & set(args[i + 2]))
             else:
-                for i in range(1):
-                    return list(set(args[i]) & set(args[i + 1]) & set(args[i + 2]) & set(args[i + 3]))
+                return list(set(args[i]) & set(args[i + 1]) & set(args[i + 2]) & set(args[i + 3]))
 
         e_list = self.erisim_listesi
 
