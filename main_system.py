@@ -151,9 +151,8 @@ Bu işlemler sırasında aşağıdaki şekilde gerçekleştirilecektir : -------
 
    ------ Kayıt silme işleminde kayıt, hemen fiziksel olarak dosyadan
     |     silnmeyecektir. Dosya üzerine bir belirteç konulacak ve
-    |     ardından gerekli
-   SIL    düzenlemeler “Erişim Listesi” üzerinde yapıldıktan sonra 
-    |     silme işlemi gerçekleştirilecektir.
+    SIL   ardından gerekli düzenlemeler “Erişim Listesi” üzerinde 
+    |     yapıldıktan sonra silme işlemi gerçekleştirilecektir.
     |
    ------ Silinecek kayıt mevcut değilse, ekranda uyarı mesejı
           görüntülecektir.
