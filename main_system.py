@@ -12,6 +12,13 @@ contributors: Bayram Cicek, Tolga Aksoy
 '''
 
 '''
+NOT: Python 'da bir degiskenin tipini ve baslangic degerini onceden 
+belirtmek gerekmediginden ve/veya bunun C 'deki gibi kolay
+yapilamamasindan dolayi kayitlari sabit uzunlukla baslat(a)madik.
+Daha cok, dosya islemlerine odaklandik.
+'''
+
+'''
 When a file is opened in write mode,
 the file's existing content is deleted
 '''
