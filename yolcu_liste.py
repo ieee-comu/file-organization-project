@@ -269,4 +269,44 @@ class YolcuListe:
         print("\n\tYolcu Basariyla SILINDI")
         print("\n\terisim_listesi uzunluk: " + str(len(self.erisim_listesi)))
 
-    # def yolcu_guncelle(self):
+    def yolcu_guncelle(self, *args):
+        # girdilerin herhangi biri bos mu kontrol et
+        result = list(filter(lambda x: x != "", args))
+
+        # girdilerin en az biri bos ise uyari ver ve cik
+        if not len(result) == 4:
+            print("\n\t! Lutfen BOS GIRMEYINIZ: CIKILIYOR...")
+            sys.exit()
+
+        # güncellenecek kayit erisim_listesi 'nde varsa sil
+        else:
+            # güncellenecek kayıt erişim listesinde ara
+
+            for e in self.erisim_listesi:
+
+                # Güncellenecek kaydı erişim listesinde ara.
+
+                if (((result[0] + "\n") == (e[0].yolcu_ad)) and ((result[1] + "\n") == (e[0].hedef_konum)) and
+                        ((result[2] + "\n") == (e[0].ucus_no)) and (((result[3] + "\n")) == (e[0].kimlik_id))):
+                    print("\n\tKayit BULUNDU:...")
+
+                    e[0].yolcu_ad = str(input("Yolcu adı giriniz.") + "\n")
+                    e[0].hedef_konum = str(input("Hedef konumu giriniz.") + "\n")
+                    e[0].ucus_no = str(input("Ucus No giriniz.") + "\n")
+                    e[0].kimlik_id = str(input("Kimlik Id giriniz.") + "\n")
+
+                    # Dosyayı güncellenmiş veri ile tekrar oluştur.
+
+                    with open("./yolcu_listesi.txt", "w") as dosya:
+                        for e in self.erisim_listesi:
+                            dosya.write(e[0].yolcu_ad)
+                            dosya.write(e[0].hedef_konum)
+                            dosya.write(e[0].ucus_no)
+                            dosya.write(e[0].kimlik_id)
+                    print("KAYIT BAŞARIYLA GÜNCELLENDİ.")
+                    sys.exit()
+        print("Güncellemek istediğiniz kayıt bulunamadı lütfen tekrar deneyiniz.")
+        sys.exit()
+
+
+
