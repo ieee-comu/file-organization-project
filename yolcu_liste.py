@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+# created on Nov 23, 2019 19:36
+
+
 import os, sys
 from yolcu import Yolcu
 
@@ -31,7 +35,7 @@ class YolcuListe:
         # erisim_listesi dolu ise bu mesaji yazdir
         e_list = self.erisim_listesi
         if not (len(e_list) == 0):
-            print("\n\t..: Dosya icerigini goruntulemektesiniz :..")
+            print("\n\t..: Dosya icerigini goruntulemektesiniz :..\n")
 
         # erisim_listesi 'ni yazdir
         for i in e_list:
@@ -42,13 +46,18 @@ class YolcuListe:
         # aramak istenilen girdilerin ayni obje'de olup olmadiklarini kontrol etme
         def intersection(*args):
             if (len(args) == 2):
-                return list(set(args[i]) & set(args[i + 1]))
+                return list(set(args[0]) & set(args[1]))
             elif (len(args) == 3):
-                return list(set(args[i]) & set(args[i + 1]) & set(args[i + 2]))
+                return list(set(args[0]) & set(args[1]) & set(args[2]))
             else:
-                return list(set(args[i]) & set(args[i + 1]) & set(args[i + 2]) & set(args[i + 3]))
+                return list(set(args[0]) & set(args[1]) & set(args[2]) & set(args[3]))
 
         e_list = self.erisim_listesi
+
+        # e_list bos ise dosyada veri yoktur. bu yuzden uyari ver
+        if len(e_list) == 0:
+            print("\n\t..: Dosyada veri YOK: arama yapılamaz: CIKILIYOR :..")
+            sys.exit()
 
         # aranip bulunan nesneleri tutacak liste
         arama_listesi = []
@@ -58,7 +67,7 @@ class YolcuListe:
 
         # tum girdiler bos ise
         if (len(list_arg) == 0):
-            print("Lutfen deger giriniz")
+            print("\n\t!:. Lutfen deger GIRINIZ .:!")
 
         # sadece 1 girdi girildi ise sonuclari goster
         elif (len(list_arg) == 1):
@@ -69,12 +78,13 @@ class YolcuListe:
                         arama_listesi.append(e[0])
 
             # arama_listesi 'ndekileri yazdır
+            print("\n\t..: Aranan verileri goruntulemektesiniz :..\n")
             for each in arama_listesi:
                 each.print_all()
 
             # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
             if len(arama_listesi) == 0:
-                print("icerik bulunamadı\n")
+                print("\n\t!:. icerik bulunamadı .:!")
 
         # sadece 2 girdi girildi ise sonuclari goster
         elif (len(list_arg) == 2):
@@ -92,12 +102,13 @@ class YolcuListe:
 
             # arama_listesi 'ndekileri yazdır
             arama_listesi = intersection(list1, list2)
+            print("\n\t..: Aranan verileri goruntulemektesiniz :..\n")
             for each in arama_listesi:
                 each.print_all()
 
             # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
             if len(arama_listesi) == 0:
-                print("icerik bulunamadı\n")
+                print("\n\t!:. icerik bulunamadı .:!")
 
         # sadece 3 girdi girildi ise sonuclari goster
         elif (len(list_arg) == 3):
@@ -123,12 +134,13 @@ class YolcuListe:
 
             # arama_listesi 'ndekileri yazdır
             arama_listesi = intersection(list1, list2, list3)
+            print("\n\t..: Aranan verileri goruntulemektesiniz :..\n")
             for each in arama_listesi:
                 each.print_all()
 
             # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
             if len(arama_listesi) == 0:
-                print("icerik bulunamadı\n")
+                print("\n\t!:. icerik bulunamadı .:!")
 
         # sadece 4 girdi girildi ise sonuclari goster
         # girdi zaten 4 'ten fazla olamaz
@@ -161,12 +173,13 @@ class YolcuListe:
 
             # arama_listesi 'ndekileri yazdır
             arama_listesi = intersection(list1, list2, list3, list4)
+            print("\n\t..: Aranan verileri goruntulemektesiniz :..\n")
             for each in arama_listesi:
                 each.print_all()
 
             # arama_listesi bos ise demek ki aranan girdiler erisim_listesi 'nde yok
             if len(arama_listesi) == 0:
-                print("icerik bulunamadı\n")
+                print("\n\t!:. icerik bulunamadı .:!")
 
     def yolcu_ekle(self, *args):
 
@@ -230,7 +243,7 @@ class YolcuListe:
                 # silinecek obje : [object(), -1]
                 if (((result[0] + "\n") == (e[0].yolcu_ad)) and ((result[1] + "\n") == (e[0].hedef_konum)) and
                         ((result[2] + "\n") == (e[0].ucus_no)) and (((result[3] + "\n")) == (e[0].kimlik_id))):
-                    print("\n\tKayit BULUNDU: SILINIYOR...")
+                    print("\n\t--> Kayit BULUNDU: SILINIYOR...")
                     control = 0
                     e[1] = -1
 
@@ -249,10 +262,10 @@ class YolcuListe:
                     dosya.write(e[0].ucus_no)
                     dosya.write(e[0].kimlik_id)
 
-        # dosyanin son halini yazdir
-        with open("./yolcu_listesi.txt", "r") as dosya:
-            for i in dosya:
-                print(i, end="")
+        # # dosyanin son halini yazdir
+        # with open("./yolcu_listesi.txt", "r") as dosya:
+        #     for i in dosya:
+        #         print(i, end="")
 
         # programdan cikmadan once erisim_listesi 'ni duzenle
         # silinen dosyalarin pointerlarini sil
@@ -266,7 +279,7 @@ class YolcuListe:
         # silinen verileri erisim_listesi 'nden kaldir
         self.erisim_listesi.pop(remove_index)
 
-        print("\n\tYolcu Basariyla SILINDI")
+        print("\n\t--> Yolcu Basariyla SILINDI")
         print("\n\terisim_listesi uzunluk: " + str(len(self.erisim_listesi)))
 
     def yolcu_guncelle(self, *args):
@@ -278,35 +291,31 @@ class YolcuListe:
             print("\n\t! Lutfen BOS GIRMEYINIZ: CIKILIYOR...")
             sys.exit()
 
-        # güncellenecek kayit erisim_listesi 'nde varsa sil
+        # guncellenecek kayit erisim_listesi 'nde varsa sil
         else:
-            # güncellenecek kayıt erişim listesinde ara
 
+            # guncellenecek kaydi erisim_listesi 'nde ara
             for e in self.erisim_listesi:
-
-                # Güncellenecek kaydı erişim listesinde ara.
 
                 if (((result[0] + "\n") == (e[0].yolcu_ad)) and ((result[1] + "\n") == (e[0].hedef_konum)) and
                         ((result[2] + "\n") == (e[0].ucus_no)) and (((result[3] + "\n")) == (e[0].kimlik_id))):
-                    print("\n\tKayit BULUNDU:...")
+                    print("\n\t--> Kayit BULUNDU: GUNCELLEYINIZ ..:")
 
-                    e[0].yolcu_ad = str(input("Yolcu adı giriniz.") + "\n")
-                    e[0].hedef_konum = str(input("Hedef konumu giriniz.") + "\n")
-                    e[0].ucus_no = str(input("Ucus No giriniz.") + "\n")
-                    e[0].kimlik_id = str(input("Kimlik Id giriniz.") + "\n")
+                    e[0].yolcu_ad = str(input("\n\tGUNCELLE: yolcu adi gir: ") + "\n")
+                    e[0].hedef_konum = str(input("\tGUNCELLE: hedef konum gir: ") + "\n")
+                    e[0].ucus_no = str(input("\tGUNCELLE: ucus no gir: ") + "\n")
+                    e[0].kimlik_id = str(input("\tGUNCELLE: ID gir: ") + "\n")
 
-                    # Dosyayı güncellenmiş veri ile tekrar oluştur.
-
+                    # erisim_listesi 'ne bakarak dosyayi guncelle
                     with open("./yolcu_listesi.txt", "w") as dosya:
                         for e in self.erisim_listesi:
                             dosya.write(e[0].yolcu_ad)
                             dosya.write(e[0].hedef_konum)
                             dosya.write(e[0].ucus_no)
                             dosya.write(e[0].kimlik_id)
-                    print("KAYIT BAŞARIYLA GÜNCELLENDİ.")
+
+                    print("\n\tYolcu Basariyla GUNCELLENDI")
                     sys.exit()
-        print("Güncellemek istediğiniz kayıt bulunamadı lütfen tekrar deneyiniz.")
+
+        print("\n\tKayit mevcut DEGIL: GUNCELLENEMEDI: CIKILIYOR...")
         sys.exit()
-
-
-

@@ -36,7 +36,7 @@ def main_switcher(i):
     return switcher.get(i, fun_invalid)
 
 
-# sistem yoneticisi ise ekle, cikar, guncelle belirle
+# sistem yoneticisi ise ekle, cikar, guncelle
 def sys_manager(i):
     switcher = {
         1: add,
@@ -46,7 +46,21 @@ def sys_manager(i):
     return switcher.get(i, fun_invalid)
 
 
-# bos veya hatali veri girilirse
+# kullanıci secilmis ise: arama yapmak icin girdileri al
+def normal_user():
+    print("\n\t..: Simdi arama yapmaktasiniz :..\n")
+
+    # yolcu arama icin girdi
+    yolcu_input = str(input("\n\tARA: yolcu adi gir: "))
+    hedef_input = str(input("\tARA: hedef konum gir: "))
+    ucus_input = str(input("\tARA: ucus no gir: "))
+    kimlik_input = str(input("\tARA: ID gir: "))
+
+    # arama yapmasi icin yolcu_ara() fonksiyonuna gonder
+    constructor.yolcu_ara(yolcu_input, hedef_input, ucus_input, kimlik_input)
+
+
+# bos veya hatali veri girilirse uyar
 def fun_invalid():
     print("\n\tINVALID INPUT")
 
@@ -59,14 +73,14 @@ def add():
     ucus_input = str(input("\tEKLE: ucus no gir: "))
     kimlik_input = str(input("\tEKLE: ID gir: "))
 
-    # erisim listesine yapmasi icin yolcu_ekle() fonksiyonuna gonder
+    # erisim listesine eklemesi icin yolcu_ekle() fonksiyonuna gonder
     constructor.yolcu_ekle(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
 # sistem yoneticisi icin: erisim listesinden cikar
 def delete():
-    print("\n\t!.: Silmek istediginiz yolcunun TUM ozelliklerini girmelisiniz"
-          " .:!")
+    print("\n\t!:. Silmek istediginiz yolcunun TUM ozelliklerini "
+          "girmelisiniz .:!")
 
     # yolcu silmek icin girdi
     yolcu_input = str(input("\n\tSIL: yolcu adi gir: "))
@@ -80,29 +94,17 @@ def delete():
 
 # sistem yoneticisi icin: erisim listesini guncelle
 def update():
-    print("\n\t!.: Güncellemek istediginiz yolcunun TUM ozelliklerini girmelisiniz"
+    print("\n\t!:. Guncellemek istediginiz yolcunun TUM ozelliklerini girmelisiniz"
           " .:!")
 
-    yolcu_input = str(input("\tyolcu adi gir: "))
-    hedef_input = str(input("\thedef konum gir: "))
-    ucus_input = str(input("\tucus no gir: "))
-    kimlik_input = str(input("\tID gir: "))
+    # yolcu guncellemek icin girdi
+    yolcu_input = str(input("\n\tARA: yolcu adi gir: "))
+    hedef_input = str(input("\tARA: hedef konum gir: "))
+    ucus_input = str(input("\tARA: ucus no gir: "))
+    kimlik_input = str(input("\tARA: ID gir: "))
 
-    # Güncelleme yapmasi icin yolcu_guncelle() fonksiyonuna gonder
+    # guncelleme yapmasi icin yolcu_guncelle() fonksiyonuna gonder
     constructor.yolcu_guncelle(yolcu_input, hedef_input, ucus_input, kimlik_input)
-
-
-# kullanıci secilmis ise: arama yapmak icin girdileri al
-def normal_user():
-    print("Simdi arama yapmaktasiniz:")
-
-    yolcu_input = str(input("\tyolcu adi gir: "))
-    hedef_input = str(input("\thedef konum gir: "))
-    ucus_input = str(input("\tucus no gir: "))
-    kimlik_input = str(input("\tID gir: "))
-
-    # arama yapmasi icin yolcu_ara() fonksiyonuna gonder
-    constructor.yolcu_ara(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
 user_input = 0  # global variable definition
@@ -114,8 +116,8 @@ def choice(user_input):
         go_sys = main_switcher(user_input)
 
         try:
-            sys_input = int(input("\nSistem Yoneticisi olarak giris yapildi:\n"
-                                  "\tLutfen bir islem seciniz:\n"
+            sys_input = int(input("\n\t..: Sistem Yoneticisi olarak giris yapildi :..\n\n"
+                                  "\t::: Lutfen bir islem seciniz :::\n\n"
                                   "\t\tEKLE: 1\n"
                                   "\t\tSIL: 2\n"
                                   "\t\tGUNCELLE: 3\n"
@@ -134,13 +136,15 @@ def choice(user_input):
 
 # program calisirken ilk alinacak girdiler
 try:
-    user_input = int(input("\nSistem Yoneticisi icin: 1\n"
-                           "Kullanici icin: 2\n"
+    print("\n\t<----- WELCOME to airline passenger system ----->")
+    user_input = int(input("\nSistem Yoneticisi icin :1\n"
+                           "\t\tKullanici icin :2\n"
                            "giriniz..: "))
 except ValueError:
     print("\n\tINVALID INPUT")
     sys.exit()
 
+# user_input 'a girilen girdiyi choice() 'e yolla ve programi baslat
 choice(user_input)
 
 '''
@@ -186,7 +190,7 @@ Bu işlemler sırasında aşağıdaki şekilde gerçekleştirilecektir : -------
     SIL   ardından gerekli düzenlemeler “Erişim Listesi” üzerinde 
     |     yapıldıktan sonra silme işlemi gerçekleştirilecektir.
     |
-   ------ Silinecek kayıt mevcut değilse, ekranda uyarı mesejı
+   ------ Silinecek kayıt mevcut değilse, ekranda uyarı mesajı
           görüntülecektir.
 
     |--------
