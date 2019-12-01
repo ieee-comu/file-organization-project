@@ -80,7 +80,16 @@ def delete():
 
 # sistem yoneticisi icin: erisim listesini guncelle
 def update():
-    print("update")
+    print("\n\t!.: Güncellemek istediginiz yolcunun TUM ozelliklerini girmelisiniz"
+          " .:!")
+
+    yolcu_input = str(input("\tyolcu adi gir: "))
+    hedef_input = str(input("\thedef konum gir: "))
+    ucus_input = str(input("\tucus no gir: "))
+    kimlik_input = str(input("\tID gir: "))
+
+    # Güncelleme yapmasi icin yolcu_guncelle() fonksiyonuna gonder
+    constructor.yolcu_guncelle(yolcu_input, hedef_input, ucus_input, kimlik_input)
 
 
 # kullanıci secilmis ise: arama yapmak icin girdileri al
