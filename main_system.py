@@ -53,7 +53,7 @@ def sys_manager(i):
     return switcher.get(i, fun_invalid)
 
 
-# kullanıci secilmis ise: arama yapmak icin girdileri al
+# kullanici secilmis ise: arama yapmak icin girdileri al
 def normal_user():
     print("\n\t..: Simdi arama yapmaktasiniz :..\n")
 
